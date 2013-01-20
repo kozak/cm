@@ -1,0 +1,36 @@
+.page-header
+  %h1 Client
+
+%p
+  %strong Infakt client:
+  %br
+  = @client.infakt_client_id
+%p
+  %strong Name:
+  %br
+  = @client.name
+%p
+  %strong Nip:
+  %br
+  = @client.nip
+%p
+  %strong Street:
+  %br
+  = @client.street
+%p
+  %strong City:
+  %br
+  = @client.city
+%p
+  %strong Postcode:
+  %br
+  = @client.postcode
+%p
+  %strong Country:
+  %br
+  = @client.country
+
+.form-actions
+  = link_to 'Back', :clients, :class => 'btn'
+  = link_to 'Edit', [:edit, @client], :class => 'btn'
+  = link_to 'Destroy', @client, :method => "delete", :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-danger'

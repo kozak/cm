@@ -1,0 +1,44 @@
+.page-header
+  %h1 Invoice
+.row-fluid
+  .span7
+    %p
+      %strong Number
+      %br
+      = @invoice.number
+    %p
+      %strong Notice
+      %br
+      = @invoice.notice
+    %p
+      %strong Exchange rate
+      %br
+      Kurs #{@invoice.exchange_rate.rate} z dnia #{@invoice.exchange_rate.date} Tabela: #{@invoice.exchange_rate.table}
+
+  .span5
+    %table.table
+      %tr
+        %th Created on
+        %th Sold on
+        %th Pay on
+      %tr
+        %td= @invoice.created_on
+        %td= @invoice.sold_on
+        %td= @invoice.pay_on
+
+    %table.table
+      %tr
+        %th Total net
+        %th Total vat
+        %th Total gross
+      %tr
+        %td= number_to_currency @invoice.total_net, unit: @invoice.currency
+        %td= number_to_currency @invoice.total_vat, unit: @invoice.currency
+        %td= number_to_currency @invoice.total_gross, unit: @invoice.currency
+
+    = link_to 'Download PDF', [:pdf, @invoice], :class => 'btn'
+
+.form-actions
+  = link_to 'Back', :invoices, :class => 'btn'
+  = link_to 'Edit', [:edit, @invoice], :class => 'btn'
+  = link_to 'Destroy', @invoice, :method => "delete", :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger'

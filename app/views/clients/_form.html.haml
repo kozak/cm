@@ -1,0 +1,11 @@
+= simple_form_for @client, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :infakt_client_id
+  = f.input :name
+  = f.input :nip
+  = f.input :street
+  = f.input :city
+  = f.input :postcode
+  = f.input :country, :as => :string
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to 'Cancel', :clients, :class => 'btn'

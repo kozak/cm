@@ -1,0 +1,15 @@
+.page-header
+  %h1 Exchange rates
+%table.table.table-striped
+  %thead
+    %tr
+      %th Date
+      %th From
+      %th Rate
+      %th Currency
+      %th Table
+      %th Actions
+  %tbody
+    = render @exchange_rates
+
+= link_to 'New', new_exchange_rate_path, :class => 'btn btn-primary'

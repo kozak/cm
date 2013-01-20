@@ -1,0 +1,16 @@
+.navbar.navbar-fluid-top
+  .navbar-inner
+    .container-fluid
+      %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to 'Company manager', :root, :class => 'brand'
+      .container.nav-collapse
+        %ul.nav
+          %li= link_to "Invoices", :invoices
+          %li= link_to "Delegations", :delegations
+          %li= link_to "Clients", :clients
+          %li= link_to "Days", :days
+          %li= link_to "Exchange rates", :exchange_rates
+          %li= link_to "Banks", :banks

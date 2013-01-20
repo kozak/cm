@@ -1,0 +1,17 @@
+%tr.account
+  %td
+    = link_to account, [bank, account]
+  %td.min
+    = account.currency
+  %td.min
+    - if account.account_balance
+      - if account.currency == 'EUR'
+        = number_to_currency account.account_balance.amount, :unit => '€', :format => "%u%n"
+      - else
+        = number_to_currency account.account_balance.amount, :unit => 'zł'
+  %td.min
+    - if account.account_balance
+      = number_to_currency account.account_balance.amount_in_pln, :unit => 'zł'
+  %td.min
+    = link_to_edit [:edit, bank, account]
+    = link_to_destroy [bank, account]

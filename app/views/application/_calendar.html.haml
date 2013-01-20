@@ -1,0 +1,31 @@
+.well.sidebar-nav
+  %table#calendar.table{style: 'font-size: 12px;'}
+    %tr
+      %td{:colspan => 2}= link_to "<", url_for(:date => sidebar_calendar.start_date - 1.month)
+      %td.center{:colspan => 3}= l sidebar_calendar.start_date, :format => :calendar
+      %td{:colspan => 2}= link_to ">", url_for(:date => sidebar_calendar.start_date + 1.month)
+    %tr
+      - %w(M T W T F S S).each do |d|
+        %th= d
+    - sidebar_calendar.weeks.each do |dates|
+      %tr
+        - dates.each do |date|
+          %td{ class: sidebar_calendar.css_classes(date) }
+            = link_to date.day, day_path(date.to_s), :method => :put
+  %table{:style => 'width: 100%'}
+    %tr
+      %td{:style => 'width: 50%'} Working days:
+      %td= sidebar_calendar.working_days.size
+    %tr
+      %td Worked days:
+      %td= sidebar_calendar.worked_days.size
+    %tr
+      %td Salary
+      %td= number_to_currency current_salary, :unit => '€', :format => "%u%n"
+    %tr
+      %td Salary in PLN
+      %td
+        - if current_salary_in_pln
+          = number_to_currency current_salary_in_pln, :unit => 'zł'
+        - else
+          N/A

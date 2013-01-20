@@ -1,0 +1,9 @@
+%h1= @account_balance.account.bank
+%h3= @account_balance.account
+
+= simple_form_for @account_balance, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :created_on, as: :string
+  = f.input :amount
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to_cancel [@account_balance.account.bank, @account_balance.account]

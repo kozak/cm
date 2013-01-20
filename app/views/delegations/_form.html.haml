@@ -1,0 +1,19 @@
+= simple_form_for @delegation, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :number
+  = f.input :infakt_client_id, :collection => Client.select_options, :prompt => false, :input_html => { :class => "span6" }, :label => 'Client'
+  = f.input :started_at, :as => :string, :input_html => { :value =>  (l(@delegation.started_at) rescue nil) }
+  = f.input :left_country_at, :as => :string, :input_html => { :value =>  (l(@delegation.left_country_at) rescue nil) }
+  = f.input :border_city
+  = f.input :returned_country_at, :as => :string, :input_html => { :value =>  (l(@delegation.returned_country_at) rescue nil) }
+  = f.input :ended_at, :as => :string, :input_html => { :value =>  (l(@delegation.ended_at) rescue nil) }
+  %legend Delegation costs
+  = f.simple_fields_for :delegation_costs do |delegation_cost|
+    .control-group
+      .controls
+        = delegation_cost.input_field :name, :class => "span5", :placeholder => 'Name'
+        = delegation_cost.input_field :number, :class => "span2", :placeholder => 'Number'
+        = delegation_cost.input_field :amount, :class => "span2", :placeholder => 'Amount in €'
+
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to 'Cancel', :delegations, :class => 'btn'

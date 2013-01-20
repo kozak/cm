@@ -1,0 +1,105 @@
+!!!
+%html
+  %head
+    %meta(charset="utf-8")
+    :css
+      #seal { width: 250px; text-align: center; margin: 50px 0; }
+      .signature { text-align: right; margin: 50px 0; }
+      table { margin: 30px 0; width: 100%; font-size: 14px; border-spacing: 0;}
+      th { padding: 5px; }
+      td { padding: 2px; text-align: center; vertical-align: middle; }
+  %body
+    #seal
+      = 50.times.map{ '.' }.join
+      %br
+      = "pieczątka"
+    #travel-order
+      %p
+        %strong Polecenie wyjazdu służbowego poza granice kraju nr #{@delegation.number}
+      %p
+        %strong Imię i nazwisko:
+        %em= CONFIG['name']
+      %p
+        %strong Stanowisko:
+        %em właściciel
+      %p{:style => 'text-indent:50px;'}
+        Wyjazd służbowy do
+        %em
+          = "#{@delegation.client}, #{@delegation.client.country}"
+        na czas od
+        %em= @delegation.started_on
+        do
+        %em= @delegation.ended_on
+        w celu pracy w siedzibie firmy kilenta.
+      .signature
+        %em= @delegation.started_on
+        = 50.times.map{ '.' }.join
+    #travel-costs
+      %p
+        %strong Rachunek kosztów podróży służbowej do polecenia wyjazdu służbowego nr #{@delegation.number}
+
+      %table
+        %tr
+          %th{:colspan => 2} Wyjazd / Przyjazd
+          %th{:colspan => 2} Przekroczenie granicy
+          %th Czas podróży krajowej
+          %th Czas podróży zagranicznej
+        %tr
+          %td= CONFIG['city']
+          %td= l @delegation.started_at
+          %td= @delegation.border_city
+          %td= l @delegation.left_country_at
+          %td{:rowspan => 2}= "#{@delegation.country_hours}h"
+          %td{:rowspan => 2}= "#{@delegation.abroad_hours}h"
+        %tr
+          %td= CONFIG['city']
+          %td= l @delegation.ended_at
+          %td= @delegation.border_city
+          %td= l @delegation.returned_country_at
+
+      %table
+        %tr
+          %th Koszty podróży
+          %th Liczba
+          %th Kwota
+          %th Razem
+        %tr
+          %td{:style => 'text-align: left;'} Dieta
+          %td= @delegation.diet_number
+          %td= number_to_currency CONFIG['diets']['de'], :unit => '€', :format => "%u%n"
+          %td= number_to_currency @delegation.diet_total, :unit => '€', :format => "%u%n"
+        - @delegation.delegation_costs.each do |cost|
+          %tr
+            %td{:style => 'text-align: left;'}= cost.name
+            %td= cost.number
+            %td= number_to_currency cost.amount, :unit => '€', :format => "%u%n"
+            %td= number_to_currency cost.total_amount, :unit => '€', :format => "%u%n"
+
+        %tr
+          %th{:colspan => 3} Ogółem koszty
+          %th= number_to_currency @delegation.costs_total, :unit => '€', :format => "%u%n"
+
+      %table
+        %tr
+          %td
+          %td Kwota waluty
+          %td Kurs
+          %td Kwota w złotych
+        %tr
+          %th Koszt delegacji
+          %td= number_to_currency @delegation.costs_total, :unit => '€', :format => "%u%n"
+          %td= number_with_precision @delegation.exchange_rate.rate, :precision => 4
+          %th= number_to_currency @delegation.costs_total_in_pln, :unit => 'zł'
+
+      %p
+        Tabela
+        = @delegation.exchange_rate.table
+        z dnia
+        = @delegation.exchange_rate.from
+
+      .signature
+        %em= @delegation.ended_on
+        = 50.times.map{ '.' }.join
+
+
+

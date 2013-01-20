@@ -1,0 +1,16 @@
+.page-header
+  %h1 Banks
+
+%table.table#banks
+  %thead
+    %tr
+      %th Name
+      %th Currency
+      %th.min Amount
+      %th.min Amount in PLN
+      %th Actions
+  %tbody
+    = render @banks
+
+= link_to_new :bank
+= link_to 'New account balance', [:new, :account_balance], :class => 'btn'

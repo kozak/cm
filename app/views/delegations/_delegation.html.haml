@@ -1,0 +1,11 @@
+%tr
+  %td= link_to delegation.number, delegation
+  %td= link_to delegation.client, delegation.client if delegation.client
+  %td= delegation.started_at.to_date
+  %td= delegation.ended_at.to_date
+  %td= delegation.days_number
+  %td.min= number_to_currency delegation.costs_total_in_pln, :unit => 'zł'
+  %td.min
+    = link_to 'PDF', delegation_path(delegation, :format => :pdf), :class => 'btn btn-mini'
+    = link_to_edit delegation
+    = link_to_destroy delegation

@@ -1,0 +1,9 @@
+%tr
+  %td{:colspan => 4}= link_to bank, bank
+  %td.min
+    = link_to 'New account', [:new, bank, :account], :class => 'btn btn-mini'
+    = link_to_edit bank
+    = link_to_destroy bank
+
+= render bank.accounts, :bank => bank
+= render 'summary', :bank => bank

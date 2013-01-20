@@ -1,0 +1,11 @@
+.well.sidebar-nav
+  %ul.nav.nav-list
+    %li.center
+      = exchange_rate.currency
+      %strong= exchange_rate.rate || 'N/A'
+      %br
+      %small
+        = exchange_rate.from
+        = exchange_rate.table || 'N/A'
+
+= render 'calendar'

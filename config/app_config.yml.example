@@ -1,0 +1,21 @@
+name: "Your Name"
+email: "email@gmail.com"
+city: "Berlin"
+password: "company_manager"
+secret_token: "SECRET_TOKEN-CHANGE_ME"
+salary_per_day: 99
+diets:
+  de: 42
+email_settings:
+  address: "smtp.gmail.com"
+  port: 587
+  domain: "gmail.com"
+  user_name: ""
+  password: ""
+infakt:
+  site: "https://www.infakt.pl"
+  consumer_key: "consumer_key"
+  consumer_secret: "consumer_secret"
+  access_token: "access_token"
+  access_token_secret: "access_token_secret"
+

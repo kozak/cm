@@ -1,0 +1,14 @@
+%h1= @bank
+
+%table.table#banks
+  %thead
+    %tr
+      %th Account
+      %th Currency
+      %th.min Amount
+      %th.min Amount in PLN
+      %th Actions
+  %tbody
+    = render @bank.accounts, :bank => @bank
+    = render 'summary', :bank => @bank
+

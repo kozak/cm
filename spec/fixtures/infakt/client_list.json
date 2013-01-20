@@ -1,0 +1,29 @@
+{
+   "clients":[
+      {
+         "client_id":123456,
+         "ulica_kor":"",
+         "ulica":"Str. 12/11",
+         "adres_kor":false,
+         "adres_www":"",
+         "email":"",
+         "miejscowosc":"Hamburg",
+         "kod_pocztowy":"123456",
+         "nip":"DEXXXXXXXXX",
+         "miejscowosc_kor":"",
+         "odbiorca":"",
+         "nazwa_firmy_kor":"",
+         "kod_pocztowy_kor":"",
+         "nazwa_firmy":"Company GmbH",
+         "numer_telefonu":"",
+         "info":"",
+         "panstwo":"Niemcy"
+      }
+   ],
+   "info":{
+      "total":1,
+      "pages":1,
+      "per_page":1,
+      "page":1
+   }
+}

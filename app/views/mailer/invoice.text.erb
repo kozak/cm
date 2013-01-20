@@ -1,0 +1,12 @@
+Invoice no. <%= @invoice.number %>
+The amount of €<%= @invoice.total_gross.to_i %>
+Worked days: <%= @worked_days.size %>
+<% if @vacations.present? %>
+Days off:
+  <% @vacations.map(&:first).each do |date| %>
+  - <%= date %>
+  <% end %>
+<% else %>
+No days off.
+<% end %>
+

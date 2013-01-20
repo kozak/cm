@@ -1,0 +1,9 @@
+%tr
+  %td= exchange_rate.date
+  %td= exchange_rate.from
+  %td= exchange_rate.rate
+  %td= exchange_rate.currency
+  %td= exchange_rate.table
+  %td
+    = link_to 'Edit', [:edit, exchange_rate], :class => 'btn btn-mini'
+    = link_to 'Destroy', exchange_rate, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger'

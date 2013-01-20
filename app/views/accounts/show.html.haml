@@ -1,0 +1,11 @@
+%h1= @account.bank
+%h3= @account
+
+%table.table
+  %thead
+    %tr
+      %th Created
+      %th Amount
+      %th Actions
+  %tbody
+    = render @account.account_balances

@@ -1,0 +1,38 @@
+.page-header
+  %h1 Delegation
+.row-fluid
+  .span5
+    %p
+      %strong Number
+      %br
+      = @delegation.number
+
+  .span7
+    %table.table
+      %tr
+        %th
+          Started
+        %th
+          Left Poland
+        %th
+          Returned Poland
+        %th
+          Ended
+
+      %tr
+        %td
+          = @delegation.started_at.to_s(:short)
+        %td
+          = @delegation.started_at.to_s(:short)
+        %td
+          = @delegation.started_at.to_s(:short)
+        %td
+          = @delegation.started_at.to_s(:short)
+
+    = link_to 'Download PDF', url_for(:format => :pdf), :class => 'btn'
+
+
+.form-actions
+  = link_to 'Back', :delegations, :class => 'btn'
+  = link_to 'Edit', [:edit, @delegation], :class => 'btn'
+  = link_to 'Destroy', @delegation, :method => "delete", :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger'
