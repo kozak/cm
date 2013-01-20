@@ -1,4 +1,4 @@
-script: 'rake spec'
+script: 'rake db:migrate spec'
 language: ruby
 rvm:
   - 1.9.3

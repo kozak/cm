@@ -1,5 +1,9 @@
 require 'yaml'
 
 env = defined?(Rails) && Rails.env
-CONFIG = YAML.load(File.read(File.expand_path('../../config/app_config.yml', __FILE__)))
+
+path = '../../config/app_config.yml'
+path = '../../config/app_config.yml.example' unless File.exists?(path)
+
+CONFIG = YAML.load(File.read(File.expand_path(path, __FILE__)))
 CONFIG.merge! CONFIG.fetch(env || :test, {})
