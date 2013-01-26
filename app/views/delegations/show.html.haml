@@ -1,38 +1,68 @@
 .page-header
+  .pull-right
+    %h3= @delegation.number
   %h1 Delegation
-.row-fluid
-  .span5
-    %p
-      %strong Number
-      %br
-      = @delegation.number
 
-  .span7
-    %table.table
-      %tr
-        %th
-          Started
-        %th
-          Left Poland
-        %th
-          Returned Poland
-        %th
-          Ended
 
-      %tr
-        %td
-          = @delegation.started_at.to_s(:short)
-        %td
-          = @delegation.started_at.to_s(:short)
-        %td
-          = @delegation.started_at.to_s(:short)
-        %td
-          = @delegation.started_at.to_s(:short)
 
-    = link_to 'Download PDF', url_for(:format => :pdf), :class => 'btn'
+%h4 Travel details
+%table.table
+  %tr
+    %th
+      Started
+    %th
+      Left Poland
+    %th
+      Returned Poland
+    %th
+      Ended
+
+  %tr
+    %td
+      = @delegation.started_at.to_s(:short)
+    %td
+      = @delegation.left_country_at.to_s(:short)
+    %td
+      = @delegation.returned_country_at.to_s(:short)
+    %td
+      = @delegation.ended_at.to_s(:short)
+
+%h4 Costs
+%table.table
+  %tr
+    %th Name
+    %th Number
+    %th Amount
+    %th Total
+  %tr
+    %td Dieta
+    %td= @delegation.diet_number
+    %td= number_to_currency CONFIG['diets']['de'], :unit => '€', :format => "%u%n"
+    %td= number_to_currency @delegation.diet_total, :unit => '€', :format => "%u%n"
+  - @delegation.delegation_costs.each do |delegation_cost|
+    %tr
+      %td= delegation_cost.name
+      %td= delegation_cost.number
+      %td= number_to_currency delegation_cost.amount, :unit => '€', :format => "%u%n"
+      %td= number_to_currency delegation_cost.total_amount, :unit => '€', :format => "%u%n"
+  %tr
+    %th{:colspan => 3} Total
+    %td= number_to_currency @delegation.costs_total, :unit => '€', :format => "%u%n"
+  %tr
+    %th{:colspan => 3} Total in PLN
+    %td= number_to_currency @delegation.costs_total_in_pln, :unit => 'zł'
+  %tr
+    %td{:colspan => 4}
+      Tabela
+      = @delegation.exchange_rate.table
+      z dnia
+      = @delegation.exchange_rate.from
+      == - EUR
+      = number_with_precision @delegation.exchange_rate.rate, :precision => 4
 
 
 .form-actions
   = link_to 'Back', :delegations, :class => 'btn'
+  = link_to 'Download PDF', url_for(:format => :pdf), :class => 'btn'
   = link_to 'Edit', [:edit, @delegation], :class => 'btn'
   = link_to 'Destroy', @delegation, :method => "delete", :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger'
