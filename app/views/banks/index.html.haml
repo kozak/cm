@@ -1,4 +1,9 @@
 .page-header
+  .pull-right
+    %strong
+      Total:
+      = number_to_currency @banks.sum(&:total_amount), :unit => 'zł'
+
   %h1 Banks
 
 %table.table#banks

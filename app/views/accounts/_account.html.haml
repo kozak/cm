@@ -5,10 +5,7 @@
     = account.currency
   %td.min
     - if account.account_balance
-      - if account.currency == 'EUR'
-        = number_to_currency account.account_balance.amount, :unit => '€', :format => "%u%n"
-      - else
-        = number_to_currency account.account_balance.amount, :unit => 'zł'
+      = number_to_currency account.account_balance.amount, :unit => ''
   %td.min
     - if account.account_balance
       = number_to_currency account.account_balance.amount_in_pln, :unit => 'zł'

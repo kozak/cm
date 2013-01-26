@@ -3,13 +3,13 @@ class Bank < ActiveRecord::Base
 
   validates :name, :presence => true
 
-  has_many :accounts
+  has_many :accounts, :dependent => :destroy
 
   def to_s
     name
   end
 
   def total_amount
-    accounts.map(&:account_balance).sum(&:amount_in_pln)
+    accounts.map(&:account_balance).compact.sum(&:amount_in_pln)
   end
 end

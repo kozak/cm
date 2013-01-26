@@ -9,7 +9,7 @@ Cm::Application.routes.draw do
   resources :days, :only => [:index, :update, :destroy]
   resources :exchange_rates
   resources :delegations
-  resources :account_balances
+  resources :account_balances, :except => [:index]
   resources :banks do
     resources :accounts
   end

@@ -3,10 +3,6 @@ require "spec_helper"
 describe AccountBalancesController do
   describe "routing" do
 
-    it "routes to #index" do
-      get("/account_balances").should route_to("account_balances#index")
-    end
-
     it "routes to #show" do
       get("/account_balances/1").should route_to("account_balances#show", :id => "1")
     end

@@ -1,4 +1,5 @@
 class AccountBalancesController < ApplicationController
+  before_filter :find_account_balance, :except => [:new, :create]
   def new
   end
 
@@ -16,11 +17,9 @@ class AccountBalancesController < ApplicationController
   end
 
   def edit
-    @account_balance = AccountBalance.find(params[:id])
   end
 
   def update
-    @account_balance = AccountBalance.find(params[:id])
     if @account_balance.update_attributes(params[:account_balance])
       redirect_to [@account_balance.account.bank, @account_balance.account]
     else
@@ -29,5 +28,15 @@ class AccountBalancesController < ApplicationController
   end
 
   def show
+  end
+
+  def destroy
+    @account_balance.destroy
+    redirect_to [@account_balance.account.bank, @account_balance.account]
+  end
+
+  private
+  def find_account_balance
+    @account_balance = AccountBalance.find(params[:id])
   end
 end
