@@ -1,7 +1,7 @@
 class InvoicesController < ApplicationController
   before_filter :find_invoice, :except => [:index, :new, :create, :refresh]
   def index
-    @invoices = Invoice.order('created_on desc').includes(:client)
+    @invoices = Invoice.order('created_on desc, number desc').includes(:client)
   end
 
   def create

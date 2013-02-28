@@ -38,11 +38,11 @@ class Invoice < ActiveRecord::Base
       :client_id => client_id,
       :created_on => date.to_s,
       :product_id => 502973,
-      :service_name => 'Usługi developerskie / development services',
+      :service_name => 'Projektowanie stron internetowych / development services',
       :currency => 'EUR',
       :amount => worked_days * CONFIG['salary_per_day'],
       :seller => CONFIG['name'],
-      :note => 'VAT rozlicza nabywca - reverse charge'
+      :note => 'VAT rozlicza nabywca - "odwrotne obciążenie" - reverse charge'
     })
     import_from_infakt
     true
@@ -54,6 +54,7 @@ class Invoice < ActiveRecord::Base
 
   private
   def calculate_gross_in_pln
-    self.total_gross_in_pln = (total_gross * exchange_rate.rate).round(2)
+    self.total_gross_in_pln =
+      (currency == 'PLN' ? total_gross : total_gross * exchange_rate.rate).round(2)
   end
 end

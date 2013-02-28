@@ -1,0 +1,2 @@
+export POW_WORKERS=1
+export POW_TIMEOUT=4147200 # two days

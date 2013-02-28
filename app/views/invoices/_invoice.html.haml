@@ -1,8 +1,8 @@
 %tr
   %td= link_to invoice.number, invoice
   %td= link_to invoice.client, invoice.client if invoice.client
-  %td= number_to_currency invoice.total_gross, :unit => '€', :format => "%u%n"
-  %td= number_to_currency invoice.total_gross_in_pln, :unit => 'zł'
+  %td= number_in_currency invoice.total_gross, invoice.currency
+  %td= number_in_currency invoice.total_gross_in_pln, 'PLN'
   %td= invoice.created_on
   %td
     = link_to 'Edit', [:edit, invoice], :class => 'btn btn-mini'

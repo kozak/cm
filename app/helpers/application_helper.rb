@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module ApplicationHelper
   def exchange_rate(date = Date.today-1, currency = "EUR")
     @exchange_rate ||= ExchangeRate.get_rate(date, currency)
@@ -14,6 +16,17 @@ module ApplicationHelper
   def current_salary_in_pln
     if exchange_rate.rate
       current_salary * exchange_rate.rate
+    end
+  end
+
+  def number_in_currency(number, currency)
+    case currency
+    when 'PLN'
+      number_to_currency number, :unit => 'zł'
+    when 'EUR'
+      number_to_currency number, :unit => '€', :format => "%u%n"
+    else
+      raise "Unknown currency"
     end
   end
 

@@ -4,7 +4,7 @@
     = link_to [:refresh, :invoices], :class => 'btn pull-right' do
       %i.icon-refresh
 
-#invoices_chart{data: {invoices: invoices_chart_data}}
+#invoices_chart{:'data-invoices' => invoices_chart_data}
 
 %table#invoices.table.table-striped
   %thead
