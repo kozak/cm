@@ -28,11 +28,11 @@ class Delegation < ActiveRecord::Base
     delegation.number = Delegation.next_number
     delegation.border_city = 'Frankfurt'
 
-    started = Time.now.beginning_of_week.change(:hour => 9, :min => 30)
+    started = Time.now.beginning_of_week.change(:hour => 8, :min => 30)
     delegation.started_at = started.to_s(:long)
     delegation.left_country_at = (started + 1.5.hours).to_s(:long)
 
-    ended = started + 4.days
+    ended = started + 2.days
     ended = Time.now if ended > Time.now
     ended = ended.change(:hour => 20, :min => 30)
     delegation.ended_at = ended.to_s(:long)
@@ -71,6 +71,10 @@ class Delegation < ActiveRecord::Base
     hours.round(2)
   end
 
+  def diet
+    started_at >= '2013-03-01'.to_date ? 49 : 42
+  end
+
   def diet_number
     quotient, modulus = abroad_hours.divmod(24)
     fraction = case
@@ -89,11 +93,11 @@ class Delegation < ActiveRecord::Base
     quotient, modulus = abroad_hours.divmod(24)
     case
     when modulus > 12
-      (quotient + 1) * CONFIG['diets']['de']
+      (quotient + 1) * diet
     when modulus >= 8
-      ((quotient*2+1)*CONFIG['diets']['de'])/2
+      ((quotient*2+1)*diet)/2
     when modulus > 0
-      ((quotient*3+1)*CONFIG['diets']['de'])/3
+      ((quotient*3+1)*diet)/3
     end
   end
 

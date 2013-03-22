@@ -4,8 +4,6 @@ city: "Berlin"
 password: "company_manager"
 secret_token: "SECRET_TOKEN-CHANGE_ME"
 salary_per_day: 99
-diets:
-  de: 42
 email_settings:
   address: "smtp.gmail.com"
   port: 587

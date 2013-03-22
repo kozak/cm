@@ -37,7 +37,7 @@
   %tr
     %td Dieta
     %td= @delegation.diet_number
-    %td= number_to_currency CONFIG['diets']['de'], :unit => '€', :format => "%u%n"
+    %td= number_to_currency @delegation.diet, :unit => '€', :format => "%u%n"
     %td= number_to_currency @delegation.diet_total, :unit => '€', :format => "%u%n"
   - @delegation.delegation_costs.each do |delegation_cost|
     %tr
