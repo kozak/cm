@@ -33,7 +33,7 @@ class DelegationsController < ApplicationController
 
   def update
     if @delegation.update_attributes(params[:delegation])
-      redirect_to :delegations
+      redirect_to @delegation
     else
       render :edit
     end
