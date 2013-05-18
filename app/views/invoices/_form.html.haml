@@ -1,9 +1,10 @@
 = simple_form_for @invoice, :html => { :class => 'form-horizontal' } do |f|
   = f.input :number
   = f.input :notice
-  = f.input :created_on
-  = f.input :sold_on
-  = f.input :pay_on
+  = f.input :created_on, :as => :string, :input_html => {:type => :date}
+  = f.input :sold_on, :as => :string, :input_html => {:type => :date}
+  = f.input :pay_on, :as => :string, :input_html => {:type => :date}
+  = f.input :paid_on, :as => :string, :input_html => {:type => :date}
   .form-actions
     = f.button :submit, :class => 'btn-primary'
     = link_to 'Cancel', invoices_path, :class => 'btn'

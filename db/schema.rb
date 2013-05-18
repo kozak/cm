@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113174750) do
+ActiveRecord::Schema.define(:version => 20130518162114) do
 
   create_table "account_balances", :force => true do |t|
     t.integer  "account_id"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(:version => 20130113174750) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.decimal  "total_gross_in_pln"
+    t.date     "paid_on"
   end
 
 end

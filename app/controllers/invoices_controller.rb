@@ -33,6 +33,14 @@ class InvoicesController < ApplicationController
     redirect_to :invoices
   end
 
+  def rate
+    if @invoice.paid_on.nil?
+      redirect_to @invoice, :notice => 'Paid on is empty'
+    else
+      render :pdf => 'rate.pdf', :layout => false, :formats => [:pdf]
+    end
+  end
+
   def pdf
     redirect_to Infakt::Invoice.new.pdf(@invoice.infakt_invoice_id, 'angpol')
   end

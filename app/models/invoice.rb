@@ -3,7 +3,7 @@
 require 'infakt/invoice'
 
 class Invoice < ActiveRecord::Base
-  attr_accessible :infakt_client_id, :created_on, :notice, :number, :pay_on, :sold_on, :currency
+  attr_accessible :infakt_client_id, :created_on, :notice, :number, :pay_on, :sold_on, :currency, :paid_on
 
   # Validations
 
@@ -50,6 +50,18 @@ class Invoice < ActiveRecord::Base
 
   def exchange_rate
     ExchangeRate.get_rate(created_on-1, 'EUR')
+  end
+
+  def paid_exchange_rate
+    ExchangeRate.get_rate(paid_on-1, 'EUR')
+  end
+
+  def exchange_rate_difference
+    total_when_paid - total_gross_in_pln
+  end
+
+  def total_when_paid
+    total_gross * paid_exchange_rate.rate
   end
 
   private

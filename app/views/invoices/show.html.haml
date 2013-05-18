@@ -21,10 +21,12 @@
         %th Created on
         %th Sold on
         %th Pay on
+        %th Paid on
       %tr
         %td= @invoice.created_on
         %td= @invoice.sold_on
         %td= @invoice.pay_on
+        %td= @invoice.paid_on
 
     %table.table
       %tr
@@ -37,6 +39,8 @@
         %td= number_to_currency @invoice.total_gross, unit: @invoice.currency
 
     = link_to 'Download PDF', [:pdf, @invoice], :class => 'btn'
+    - if @invoice.currency == 'EUR'
+      = link_to 'Exchange rate differences', [:rate, @invoice], :class => 'btn'
 
 .form-actions
   = link_to 'Back', :invoices, :class => 'btn'

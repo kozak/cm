@@ -1,0 +1,57 @@
+!!!
+%html
+  %head
+    %meta(charset="utf-8")
+    :css
+      #seal { width: 250px; text-align: center; margin: 50px 0; }
+      table { margin: 30px 0; width: 100%; font-size: 14px; border-spacing: 0;}
+      th { padding: 5px; text-align: left;}
+      td { padding: 2px; text-align: left; vertical-align: middle; }
+      .right { text-align: right; }
+  %body
+    #seal
+      = 50.times.map{ '.' }.join
+      %br
+      = "pieczątka"
+    #exchange_rate_differences
+      %p
+        %strong Rożnice kursowe EUR dla faktury nr #{@invoice.number}
+
+      %table
+        %tr
+          %th
+          %th Data
+          %th Kwota EUR
+          %th Kurs
+          %th Kwota PLN
+          %th Tabela
+        %tr
+          %th Faktura
+          %td= @invoice.created_on
+          %td= number_in_currency @invoice.total_gross, 'EUR'
+          %td= @invoice.exchange_rate.rate
+          %td.right= number_in_currency @invoice.total_gross_in_pln, 'PLN'
+          %td #{@invoice.exchange_rate.table} z dnia #{@invoice.exchange_rate.date}
+        %tr
+          %th Wpływ
+          %td= @invoice.paid_on
+          %td= number_in_currency @invoice.total_gross, 'EUR'
+          %td= @invoice.paid_exchange_rate.rate
+          %td.right= number_in_currency @invoice.total_when_paid, 'PLN'
+          %td #{@invoice.paid_exchange_rate.table} z dnia #{@invoice.paid_exchange_rate.date}
+        %tr
+          %th Różnica
+          %td
+          %td
+          %td
+          %td.right= number_in_currency @invoice.exchange_rate_difference, 'PLN'
+          %td
+      %p
+        - if @invoice.exchange_rate_difference > 0
+          %strong Rożnica kursowa dodatnia
+        - else
+          %strong Rożnica kursowa ujemna
+
+
+
+

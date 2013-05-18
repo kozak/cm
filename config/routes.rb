@@ -18,6 +18,7 @@ Cm::Application.routes.draw do
   resources :invoices do
     get :refresh, :on => :collection
     get :pdf, :on => :member
+    get :rate, :on => :member
   end
 
   root :to => 'invoices#index'

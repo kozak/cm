@@ -4,6 +4,7 @@
   %td= number_in_currency invoice.total_gross, invoice.currency
   %td= number_in_currency invoice.total_gross_in_pln, 'PLN'
   %td= invoice.created_on
+  %td= invoice.paid_on
   %td
     = link_to 'Edit', [:edit, invoice], :class => 'btn btn-mini'
     = link_to 'Destroy', invoice, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger'
