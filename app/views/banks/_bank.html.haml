@@ -5,5 +5,5 @@
     = link_to_edit bank
     = link_to_destroy bank
 
-= render bank.accounts, :bank => bank
+= render bank.accounts.reject(&:empty?), :bank => bank
 = render 'summary', :bank => bank

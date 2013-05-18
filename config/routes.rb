@@ -7,7 +7,9 @@ Cm::Application.routes.draw do
     get :refresh, :on => :collection
   end
   resources :days, :only => [:index, :update, :destroy]
-  resources :exchange_rates
+  resources :exchange_rates do
+    get :refresh, :on => :collection
+  end
   resources :delegations
   resources :account_balances, :except => [:index]
   resources :banks do

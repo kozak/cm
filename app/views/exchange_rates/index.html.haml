@@ -1,5 +1,9 @@
 .page-header
-  %h1 Exchange rates
+  %h1
+    Exchange rates
+    = link_to [:refresh, :exchange_rates], :class => 'btn pull-right' do
+      %i.icon-refresh
+
 %table.table.table-striped
   %thead
     %tr

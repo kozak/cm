@@ -36,4 +36,10 @@ class ExchangeRate < ActiveRecord::Base
       )
     end
   end
+
+  def self.refresh!
+    (90.days.ago.to_date..1.day.ago.to_date).each do |date|
+      ExchangeRate.get_rate(date, 'EUR')
+    end
+  end
 end

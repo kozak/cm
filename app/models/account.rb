@@ -9,4 +9,12 @@ class Account < ActiveRecord::Base
   def to_s
     name
   end
+
+  def balance_for(date)
+    account_balances.where('created_on <= ?', date).last
+  end
+
+  def empty?
+    !account_balance || account_balance.amount.zero?
+  end
 end

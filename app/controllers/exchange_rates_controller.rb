@@ -1,5 +1,5 @@
 class ExchangeRatesController < ApplicationController
-  before_filter :find_exchange_rate, :except => :index
+  before_filter :find_exchange_rate, :except => [:index, :refresh]
   def index
     @exchange_rates = ExchangeRate.order('date desc')
   end
@@ -15,6 +15,11 @@ class ExchangeRatesController < ApplicationController
   def destroy
     @exchange_rate.destroy
     redirect_to exchange_rates_url
+  end
+
+  def refresh
+    ExchangeRate.refresh!
+    redirect_to :exchange_rates
   end
 
   private
