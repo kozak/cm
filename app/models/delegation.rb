@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Delegation < ActiveRecord::Base
   attr_accessible :number, :infakt_client_id, :ended_at, :left_country_at, :returned_country_at, :started_at, :border_city, :delegation_costs_attributes
 
@@ -26,17 +27,17 @@ class Delegation < ActiveRecord::Base
   def self.new_delegation
     delegation = Delegation.new
     delegation.number = Delegation.next_number
-    delegation.border_city = 'Frankfurt'
+    delegation.border_city = 'Kostrzyn nad Odrą'
 
-    started = Time.now.beginning_of_week.change(:hour => 8, :min => 30)
+    started = Time.now.beginning_of_week.change(:hour => 7, :min => 0)
     delegation.started_at = started.to_s(:long)
-    delegation.left_country_at = (started + 1.5.hours).to_s(:long)
+    delegation.left_country_at = (started + 3.hours).to_s(:long)
 
     ended = started + 2.days
     ended = Time.now if ended > Time.now
-    ended = ended.change(:hour => 20, :min => 30)
+    ended = ended.change(:hour => 21, :min => 0)
     delegation.ended_at = ended.to_s(:long)
-    delegation.returned_country_at = (ended - 1.5.hours).to_s(:long)
+    delegation.returned_country_at = (ended - 3.hours).to_s(:long)
 
     delegation.delegation_costs.build(:name => 'Bilet metro', :amount => '1.40')
     delegation.delegation_costs.build(:name => 'Bilet metro', :amount => '2.40')
