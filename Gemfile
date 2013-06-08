@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.9'
+gem 'rails', '3.2.13'
 gem 'sqlite3', '~> 1.3.6'
 gem 'simple_form', '~> 2.0.4'
 gem 'oauth', '~> 0.4.7'
