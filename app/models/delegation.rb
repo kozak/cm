@@ -96,9 +96,9 @@ class Delegation < ActiveRecord::Base
     when modulus > 12
       (quotient + 1) * diet
     when modulus >= 8
-      ((quotient*2+1)*diet)/2
+      ((quotient*2+1)*diet).to_f/2
     when modulus > 0
-      ((quotient*3+1)*diet)/3
+      ((quotient*3+1)*diet).to_f/3
     end
   end
 
